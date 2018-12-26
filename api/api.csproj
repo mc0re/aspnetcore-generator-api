@@ -7,10 +7,10 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Faker.Net" Version="1.0.3" />
+    <PackageReference Include="Faker.NETCore" Version="1.0.1" />
     <PackageReference Include="MailKit" Version="1.16.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-beta" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
