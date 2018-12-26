@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace api
@@ -30,7 +31,7 @@ namespace api
                 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "Generate Random Data API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Generate Random Data API", Version = "v1" });
             });
         }
 
