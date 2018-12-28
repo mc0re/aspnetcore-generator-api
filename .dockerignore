@@ -1,0 +1,12 @@
+**/bin/
+**/obj/
+**/.git/
+**/.vs/
+registry/
+teamcity/
+**/.dockerignore*
+**/Dockerfile*
+**/docker-compose*.yml
+**/.gitignore
+**/.vscode
+**/*.user
