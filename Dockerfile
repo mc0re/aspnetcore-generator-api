@@ -7,7 +7,7 @@ RUN dotnet restore tests
 
 COPY . .
 # Turn on XUnit integration with TeamCity
-ENV TEAMCITY_PROJECT_NAME=tests
+ENV TEAMCITY_PROJECT_NAME=fake
 RUN dotnet test tests
 
 RUN dotnet publish api -o /publish
