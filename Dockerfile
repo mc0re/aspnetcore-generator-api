@@ -6,8 +6,10 @@ COPY tests/tests.csproj tests/
 RUN dotnet restore tests
 
 COPY . .
-# Turn on XUnit integration with TeamCity
-ENV TEAMCITY_PROJECT_NAME="Aspnetcore Generator Api"
+# xUnit -> TeamCity integration
+ARG TEAMCITY_PROJECT_NAME=fake
+ENV TEAMCITY_PROJECT_NAME $TEAMCITY_PROJECT_NAME
+RUN echo "Docker build: TEAMCITY_PROJECT_NAME=$TEAMCITY_PROJECT_NAME"
 RUN dotnet test tests
 
 RUN dotnet publish api -o /publish
