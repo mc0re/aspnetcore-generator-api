@@ -6,6 +6,9 @@ COPY tests/tests.csproj tests/
 RUN dotnet restore tests
 
 COPY . .
+# xUnit -> TeamCity integration
+ARG TEAMCITY_PROJECT_NAME=fake
+ENV TEAMCITY_PROJECT_NAME $TEAMCITY_PROJECT_NAME
 RUN echo "Docker build: TEAMCITY_PROJECT_NAME=$TEAMCITY_PROJECT_NAME"
 RUN dotnet test --verbosity=normal tests
 
