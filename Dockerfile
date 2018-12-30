@@ -7,7 +7,9 @@ RUN dotnet restore tests
 
 COPY . .
 # xUnit -> TeamCity integration
-ENV TEAMCITY_PROJECT_NAME fake
+ARG TEAMCITY_PROJECT_NAME=fake
+ENV TEAMCITY_PROJECT_NAME $TEAMCITY_PROJECT_NAME
+RUN env | grep TEAMCITY_PROJECT_NAME
 RUN dotnet test --verbosity=normal tests
 
 RUN dotnet publish api -o /publish
