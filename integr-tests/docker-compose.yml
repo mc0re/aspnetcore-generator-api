@@ -2,9 +2,11 @@ version: '3.1'
 
 services:
   generator:
-    image: image-repo:55000/generator:latest
+    image: image-repo:55000/generator:ci-${GENERATOR_BUILD_NUMBER-20}
   mail:
     image: mailhog/mailhog
   tester:
     build: .
-    image: image-repo:55000/generator-tester:latest
+    image: image-repo:55000/generator:test-${BUILD_NUMBER-5}
+    environment:
+      - TEAMCITY_PROJECT_NAME
