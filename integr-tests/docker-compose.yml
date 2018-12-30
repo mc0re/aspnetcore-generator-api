@@ -8,6 +8,6 @@ services:
   tester:
     build: .
     image: image-repo:55000/generator:test-${BUILD_NUMBER-5}
-    command: --verbosity=normal
+    #command: --verbosity=normal
     environment:
       - TEAMCITY_PROJECT_NAME
