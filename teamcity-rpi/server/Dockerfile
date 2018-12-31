@@ -1,5 +1,4 @@
-FROM teamcity_oraclejdk-8
-LABEL MAINTAINER pixelistik <code@pixelistik.de>
+FROM p47phoenix/teamcity_oraclejdk-8
 
 RUN wget -v https://download.jetbrains.com/teamcity/TeamCity-10.0.4.tar.gz && \
     tar -xzvf TeamCity-10.0.4.tar.gz && \
