@@ -1,8 +1,8 @@
 FROM p47phoenix/teamcity_oraclejdk-8
 
-RUN wget -v https://download.jetbrains.com/teamcity/TeamCity-10.0.4.tar.gz && \
-    tar -xzvf TeamCity-10.0.4.tar.gz && \
-    rm TeamCity-10.0.4.tar.gz
+RUN wget -q -O TeamCity.tar.gz https://download.jetbrains.com/teamcity/TeamCity-2018.2.1.tar.gz && \
+    tar -xzvf TeamCity.tar.gz && \
+    rm TeamCity.tar.gz
 
 EXPOSE 8111 9090
 
