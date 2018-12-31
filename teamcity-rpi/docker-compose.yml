@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+  teamcity-server:
+    image: teamcity-server
+    build: server/
+    volumes:
+      - teamcity-server-datadir:/data/teamcity_server/datadir
+      - teamcity-server-logs:/opt/teamcity/logs
+    ports:
+      - "8111:8111"
+    restart: unless-stopped
+
+  teamcity-agent:
+    image: teamcity-agent
+    build: agent/
+    environment:
+      SERVER_URL: http://teamcity-server:8111
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+volumes:
+  teamcity-server-datadir: /mnt/mycloud/Work/TeamCity/data
+  teamcity-server-logs: /mnt/mycloud/Work/TeamCity/logs
