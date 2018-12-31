@@ -2,12 +2,12 @@ version: '3.1'
 
 services:
   generator:
-    image: image-repo:55000/generator:ci-${GENERATOR_BUILD_NUMBER-20}
+    image: image-repo:55000/generator:ci-${GENERATOR_BUILD_NUMBER-37}
   mail:
     image: mailhog/mailhog
   tester:
     build: .
-    image: image-repo:55000/generator:test-${BUILD_NUMBER-5}
-    #command: --verbosity=normal
+    image: image-repo:55000/generator:test-${BUILD_NUMBER-manual}
+    command: --verbosity=normal
     environment:
       - TEAMCITY_PROJECT_NAME
