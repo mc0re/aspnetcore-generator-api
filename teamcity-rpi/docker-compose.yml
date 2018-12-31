@@ -7,6 +7,7 @@ services:
     volumes:
       - teamcity-server-datadir:/data/teamcity_server/datadir
       - teamcity-server-logs:/opt/teamcity/logs
+      - teamcity-server-logs-rpi:/TeamCity/logs
     ports:
       - "8111:8111"
     restart: unless-stopped
@@ -33,3 +34,9 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '/mnt/mycloud/Work/TeamCity/logs'
+  teamcity-server-logs-rpi:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/mnt/mycloud/Work/TeamCity/logs-rpi'
