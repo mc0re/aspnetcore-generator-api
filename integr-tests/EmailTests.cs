@@ -55,7 +55,7 @@ namespace integr_tests
                     .Which.Should().BeOfType<JArray>()
                     .Which.First.Should().HaveElement("Raw")
                         .Which.Should().HaveElement("From")
-                            .Which.Should().HaveValue("dgenerator@generate.com")
+                            .Which.Should().HaveValue("generator@generate.com")
                 ;
             }
         }
