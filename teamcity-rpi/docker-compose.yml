@@ -21,5 +21,17 @@ services:
     restart: unless-stopped
 
 volumes:
-  teamcity-server-datadir: /mnt/mycloud/Work/TeamCity/data
-  teamcity-server-logs: /mnt/mycloud/Work/TeamCity/logs
+  teamcity-server-datadir:
+    external: true
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/mnt/mycloud/Work/TeamCity/data'
+  teamcity-server-logs:
+    external: true
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/mnt/mycloud/Work/TeamCity/logs'
