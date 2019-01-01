@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "4799cdae-75c5-4140-94c6-ac2fd26fdf82",
+		"name": "Docker registry",
+		"description": "Works with a Docker registry.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Generator tags",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://image-repo:55000/v2/generator/tags/list",
+					"protocol": "http",
+					"host": [
+						"image-repo"
+					],
+					"port": "55000",
+					"path": [
+						"v2",
+						"generator",
+						"tags",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Repositories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{registry}}/v2/_catalog",
+					"protocol": "http",
+					"host": [
+						"{{registry}}"
+					],
+					"path": [
+						"v2",
+						"_catalog"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,10 +1,11 @@
 version: '3.1'
 
+# First build and push the common image:
+#   build.sh
+# Then start:
+#   docker-compose up -d --force-recreate
+
 services:
-  teamcity-common-image:
-    image: image-repo:55000/teamcity:armhf-latest
-    build: common/
-    
   teamcity-server:
     image: teamcity-server
     build: server/
