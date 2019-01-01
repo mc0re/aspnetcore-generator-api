@@ -10,7 +10,8 @@ version: '3.1'
 #
 # Linux VM
 # --------
-# 1. Make sure the data and log directories are "shared".
+# 1. Make sure the data and log directories are mounted,
+#    and the mounts are writable.
 # 2. Start:
 #   docker-compose up -d --force-recreate
 
@@ -39,16 +40,16 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/mnt/hgfs/TeamCity/data'
+      device: '/mnt/mycloud/Work/TeamCity/data'
   teamcity-server-logs:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/mnt/hgfs/TeamCity/logs'
+      device: '/mnt/mycloud/Work/TeamCity/logs'
   teamcity-server-logs-rpi:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/mnt/hgfs/TeamCity/logs-rpi'
+      device: '/mnt/mycloud/Work/TeamCity/logs-rpi'
