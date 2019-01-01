@@ -6,7 +6,7 @@ manifests:
       architecture: amd64
       os: linux
   -
-    image: image-repo:55000/teamcity-agent:latest-armhf
+    image: image-repo:55000/teamcity-agent:armhf-latest
     platform:
       architecture: arm/v7
       os: linux
