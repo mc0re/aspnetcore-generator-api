@@ -1,11 +1,26 @@
 version: '3.1'
 
+# Raspberry Pi
+# ------------
+# 1. Build and push the common image:
+#   build.sh
+# 2. Mount the data and log directories.
+# 3. Start:
+#   docker-compose up -d --force-recreate
+#
+# Linux VM
+# --------
+# 1. Make sure the data and log directories are "shared".
+# 2. Start:
+#   docker-compose up -d --force-recreate
+
 services:
-  teamcity-srv:
+  teamcity-server:
     image: jetbrains/teamcity-server:2018.2.1
     volumes:
       - teamcity-server-datadir:/data/teamcity_server/datadir
       - teamcity-server-logs:/opt/teamcity/logs
+      - teamcity-server-logs-rpi:/TeamCity/logs
     ports:
       - "8111:8111"
     restart: unless-stopped
@@ -13,11 +28,27 @@ services:
   teamcity-agent:
     image: jetbrains/teamcity-agent:2018.2.1
     environment:
-      SERVER_URL: http://teamcity-srv:8111
+      SERVER_URL: http://teamcity-server:8111
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
 
 volumes:
   teamcity-server-datadir:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/mnt/hgfs/TeamCity/data'
   teamcity-server-logs:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/mnt/hgfs/TeamCity/logs'
+  teamcity-server-logs-rpi:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/mnt/hgfs/TeamCity/logs-rpi'
