@@ -1,0 +1,12 @@
+image: image-repo:55000/teamcity-agent:latest
+manifests:
+  -
+    image: jetbrains/teamcity-agent:latest
+    platform:
+      architecture: amd64
+      os: linux
+  -
+    image: image-repo:55000/teamcity-agent:latest-armhf
+    platform:
+      architecture: arm/v7
+      os: linux

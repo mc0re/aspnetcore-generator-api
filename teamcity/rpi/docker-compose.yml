@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   teamcity-common-image:
-    image: image-repo:55000/teamcity
+    image: image-repo:55000/teamcity:latest-armhf
     build: common/
     
   teamcity-server:
