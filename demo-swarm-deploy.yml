@@ -4,6 +4,8 @@ services:
   generator:
     image: image-repo:55000/generator:ci-${GENERATOR_BUILD_NUMBER-37}
     ports:
-      - 8080:80
+      - ${GENERATOR_PORT-8080}:80
   mail:
     image: mailhog/mailhog
+    ports:
+      - ${MAILHOG_PORT-8081}:8025
