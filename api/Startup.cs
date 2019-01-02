@@ -23,6 +23,7 @@ namespace api
 
         public IConfiguration Configuration { get; }
 
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -33,10 +34,15 @@ namespace api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Generate Random Data API", Version = "v1" });
             });
+
+            services.Configure<MailServerConfig>(Configuration.GetSection("MailServer"));
         }
 
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(
+            IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+            IOptions<MailServerConfig> mailConfigAccessor)
         {
             app.UseMvc();
 
@@ -49,6 +55,9 @@ namespace api
             var redirectRootToSwagger = new RewriteOptions()
                 .AddRedirect("^$", "swagger");
             app.UseRewriter(redirectRootToSwagger);
+
+            var mailConfig = mailConfigAccessor.Value;
+            System.Console.WriteLine($"Mail server: {mailConfig.Host}:{mailConfig.Port}");
         }
     }
 }
