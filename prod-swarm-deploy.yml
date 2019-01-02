@@ -1,0 +1,7 @@
+version: '3.1'
+
+services:
+  generator:
+    image: image-repo:55000/generator:ci-${GENERATOR_BUILD_NUMBER-37}
+    ports:
+      - ${GENERATOR_PORT-80}:80
