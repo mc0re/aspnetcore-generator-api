@@ -11,9 +11,9 @@ services:
     ports:
       - ${GENERATOR_PORT-80}:80
     configs:
-      - source: site.conf
+      - source: site.conf-1.1
         target: /etc/nginx/conf.d/default.conf
 
 configs:
-  site.conf:
+  site.conf-1.1:
     file: ./site.conf
