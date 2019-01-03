@@ -4,8 +4,8 @@ services:
   generator:
     image: image-repo:55000/generator:ci-${GENERATOR_BUILD_NUMBER-37}
     environment:
-      MAILSERVER__HOST: prodmail
-      MAILSERVER__PORT: 25
+      MAILSERVER__HOST: 192.168.0.24
+      MAILSERVER__PORT: 1025
   proxy:
     image: nginx
     ports:
