@@ -18,15 +18,16 @@ cd compose
 git checkout release
 docker build -t docker-compose:armhf -f Dockerfile.armhf .
 popd
-mkdir -p agent/compose-dist
+mkdir -p compose-dist agent/compose-dist
 docker run \
     --entrypoint="script/build/linux-entrypoint" \
-    -v $(pwd)/../agent/compose-dist:/code/dist \
+    -v $(pwd)/compose-dist:/code/dist \
     -v ~/compose/compose/.git:/code/.git \
     -v /var/run/docker.sock:/var/run/docker.sock \
     "docker-compose:armhf"
 rm -rf ~/compose
-mv agent/compose-dist/docker-compose-Linux-armv7l agent/compose-dist/docker-compose
+mv compose-dist/docker-compose-Linux-armv7l agent/compose-dist/docker-compose
+rmdir compose-dist
 chmod 755 agent/compose-dist/docker-compose
 # docker image ls docker-compose -q | xargs -r docker image rm
 fi
