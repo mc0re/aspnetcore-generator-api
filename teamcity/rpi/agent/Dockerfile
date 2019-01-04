@@ -1,7 +1,6 @@
 FROM image-repo:55000/teamcity
 
-RUN pwd
-COPY ../compose-dist/docker-compose /usr/local/bin/docker-compose
+COPY compose-dist/docker-compose /usr/local/bin/docker-compose
 RUN chmod 0755 /usr/local/bin/docker-compose
 RUN wget get.docker.com -O- | sh
 
