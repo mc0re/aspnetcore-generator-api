@@ -21,7 +21,7 @@ popd
 mkdir -p compose-dist
 ls -al ~/compose
 docker run \
-    --rm --entrypoint="script/build/linux-entrypoint" \
+    --entrypoint="script/build/linux-entrypoint" \
     -v $(pwd)/compose-dist:/code/dist \
     -v ~/compose/compose/.git:/code/.git \
     -v /var/run/docker.sock:/var/run/docker.sock \
