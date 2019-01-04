@@ -45,7 +45,7 @@ fi
 # Docker -v can only have access to the contents directory
 mkdir -p agent/compose-dist
 cp /usr/local/bin/docker-compose agent/compose-dist/docker-compose
-docker build -t image-repo:55000/teamcity-agent agent
+docker build -t image-repo:55000/teamcity-agent:armhf-latest agent
 rm -rf agent/compose-dist
 
 docker push image-repo:55000/teamcity-agent:armhf-latest
