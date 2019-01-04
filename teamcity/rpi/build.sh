@@ -9,7 +9,7 @@ docker build -t teamcity-server server
 
 # Docker-in-docker does not work (missing "RUN --mount" option),
 # so we build docker-compose locally.
-if [ ! -f agent/compose-dist/docker-compose ]; then
+if [ ! -f /usr/local/bin/docker-compose ]; then
 mkdir -p ~/compose
 pushd .
 cd ~/compose
@@ -18,7 +18,7 @@ cd compose
 git checkout release
 docker build -t docker-compose:armhf -f Dockerfile.armhf .
 popd
-mkdir -p compose-dist agent/compose-dist
+mkdir -p compose-dist
 docker run \
     --entrypoint="script/build/linux-entrypoint" \
     -v $(pwd)/compose-dist:/code/dist \
@@ -26,11 +26,14 @@ docker run \
     -v /var/run/docker.sock:/var/run/docker.sock \
     "docker-compose:armhf"
 rm -rf ~/compose
-mv compose-dist/docker-compose-Linux-armv7l agent/compose-dist/docker-compose
+mv compose-dist/docker-compose-Linux-armv7l /usr/local/bin/docker-compose
 rmdir compose-dist
-chmod 755 agent/compose-dist/docker-compose
+chmod 755 /usr/local/bin/docker-compose
 # docker image ls docker-compose -q | xargs -r docker image rm
 fi
 
-# Now docker-compose is in a subdirectory "agent/compose-dist"
+# Docker -v can only have access to the contents directory
+mkdir -p agent/compose-dist
+cp /usr/local/bin/docker-compose agent/compose-dist/docker-compose
 docker build -t teamcity-agent agent
+rm -rf agent/compose-dist
