@@ -1,3 +1,6 @@
+#
+# Common base with TeamCity code
+#
 docker build -t image-repo:55000/teamcity:armhf-latest common
 docker push image-repo:55000/teamcity:armhf-latest
 
@@ -5,7 +8,14 @@ docker manifest create --insecure image-repo:55000/teamcity:latest image-repo:55
 docker manifest annotate image-repo:55000/teamcity:latest image-repo:55000/teamcity:armhf-latest --os linux --arch arm
 docker manifest push image-repo:55000/teamcity:latest
 
+#
+# Server - trivial image
+#
 docker build -t teamcity-server server
+
+#
+# Agent with Docker and docker-compose
+#
 
 # Docker-in-docker does not work (missing "RUN --mount" option),
 # so we build docker-compose locally.
@@ -37,3 +47,9 @@ mkdir -p agent/compose-dist
 cp /usr/local/bin/docker-compose agent/compose-dist/docker-compose
 docker build -t teamcity-agent agent
 rm -rf agent/compose-dist
+
+docker push image-repo:55000/teamcity-agent:armhf-latest
+
+docker manifest create --insecure image-repo:55000/teamcity-agent:latest image-repo:55000/teamcity-agent:armhf-latest
+docker manifest annotate image-repo:55000/teamcity-agent:latest image-repo:55000/teamcity-agent:armhf-latest --os linux --arch arm
+docker manifest push image-repo:55000/teamcity-agent:latest
