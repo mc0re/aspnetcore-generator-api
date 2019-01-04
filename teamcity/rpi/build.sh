@@ -19,9 +19,6 @@ git checkout release
 docker build -t docker-compose:armhf -f Dockerfile.armhf .
 popd
 mkdir -p compose-dist
-
-pwd
-ls -al ~/compose/compose
 docker run \
     --entrypoint="script/build/linux-entrypoint" \
     -v $(pwd)/compose-dist:/code/dist \
