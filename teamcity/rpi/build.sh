@@ -19,7 +19,9 @@ git checkout release
 docker build -t docker-compose:armhf -f Dockerfile.armhf .
 popd
 mkdir -p compose-dist
-ls -al ~/compose
+
+pwd
+ls -al ~/compose/compose
 docker run \
     --entrypoint="script/build/linux-entrypoint" \
     -v $(pwd)/compose-dist:/code/dist \
@@ -27,9 +29,9 @@ docker run \
     -v /var/run/docker.sock:/var/run/docker.sock \
     "docker-compose:armhf"
 rm -rf ~/compose
-# docker image ls docker-compose -q | xargs -r docker image rm
 mv compose-dist/docker-compose-Linux-armv7l compose-dist/docker-compose
 chmod 755 compose-dist/docker-compose
+# docker image ls docker-compose -q | xargs -r docker image rm
 fi
 
 # Now docker-compose is in a subdirectory "compose-dist*"
