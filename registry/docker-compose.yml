@@ -3,10 +3,13 @@ version: '3.1'
 services:
   image-repo:
     image: registry
+    # another image: budry/registry-arm
     volumes:
       - registry:/var/lib/registry
     ports:
       - "55000:5000"
+    environment:
+      REGISTRY_STORAGE_DELETE_ENABLED: true
     restart: unless-stopped
 
 volumes:
