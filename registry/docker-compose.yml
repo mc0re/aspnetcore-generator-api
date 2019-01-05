@@ -1,7 +1,7 @@
 version: '3.1'
 
 services:
-  image-registry:
+  image-repo:
     image: registry
     volumes:
       - registry:/var/lib/registry
@@ -11,3 +11,8 @@ services:
 
 volumes:
   registry:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/mnt/mycloud/Work/DockerRegistry'
