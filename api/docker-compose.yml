@@ -7,6 +7,9 @@ services:
     image: aspnetcore/generator:multi
     ports:
       - "8080:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      
   mail:
     image: mailhog/mailhog
     ports:
